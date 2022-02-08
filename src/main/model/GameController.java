@@ -8,9 +8,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
-// manipulates the game state in response to user input
+// Manipulates the game state in response to user input
 public class GameController {
     private int maxGuesses;
     private String target;
@@ -19,14 +20,15 @@ public class GameController {
     private List<String> comparison;
 
     public GameController() {
-        target = "hello";
+        target = generateTarget();
         game = new Game();
         gameView = new GameView();
     }
 
     public void play() {
-        Guess n = new Guess("hello");
-        processWord(n);
+        maxGuesses = gameView.selectMaxGuesses();
+        gameView.key();
+        processWord(gameView.makeGuess());
     }
 
 
@@ -36,17 +38,15 @@ public class GameController {
             game.addGuess(guess);
             String guessedWord = guess.getWord();
             for (int i = 0; i < guessedWord.length(); i++) {
-                for (int j = 0; j < target.length(); j++) {
-                    if (guessedWord.substring(i, i + 1).equals(target.substring(j, j + 1))) {
-                        if (i == j) {
-                            comparison.add("c");
-                        } else {
-                            comparison.add("i");
-                        }
-                        break;
-                    }
+                char guessLetter = guessedWord.charAt(i);
+                char targetLetter = target.charAt(i);
+                if (guessLetter == targetLetter) {
+                    comparison.add("c");
+                } else if (target.indexOf(guessLetter) != -1) {
+                    comparison.add("i");
+                } else {
+                    comparison.add("x");
                 }
-                comparison.add("x");
             }
             gameView.printGuess(guess, comparison);
         } else {
@@ -55,14 +55,34 @@ public class GameController {
     }
 
     public boolean isValid(Guess guess) {
-        Scanner scan = new Scanner("./data/WordList.txt");
-        while (scan.hasNext()) {
-            String next = scan.nextLine().toString();
-            if (guess.getWord().equals(next)) {
-                return true;
+        try {
+            Scanner scan = new Scanner(new File("./data/WordList.txt"));
+            while (scan.hasNext()) {
+                String next = scan.nextLine();
+                if (guess.getWord().equals(next)) {
+                    return true;
+                }
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         return false;
+    }
+
+    public String generateTarget() {
+        List<String> words = new ArrayList<>();
+        try {
+            Scanner scan = new Scanner(new File("./data/WordList.txt"));
+            while (scan.hasNext()) {
+                String next = scan.nextLine();
+                words.add(next);
+            }
+            Random rand = new Random();
+            int index = rand.nextInt(words.size());
+            return words.get(index);
+        } catch (FileNotFoundException e) {
+            return "Error: File not found";
+        }
     }
 
 }

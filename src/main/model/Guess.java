@@ -1,5 +1,6 @@
 package model;
 
+// Represents one guess
 public class Guess {
     private String word;
 

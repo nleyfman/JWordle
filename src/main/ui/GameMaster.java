@@ -2,7 +2,7 @@ package ui;
 
 import model.GameController;
 
-// checks if game is done, responsible for stats
+// Checks if game is done, responsible for stats
 public class GameMaster {
 
     public GameMaster() {

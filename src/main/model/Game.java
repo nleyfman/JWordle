@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-// keep track of the game state
+// Represents the game state
 public class Game {
     private List<Guess> guesses;
 
