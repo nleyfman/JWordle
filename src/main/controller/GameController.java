@@ -17,7 +17,6 @@ public class GameController {
     private Game game;
     private GameView gameView;
     private boolean won;
-    private List<String> comparison;
 
     // EFFECTS: target is set to a random 5-letter word from the list;
     //          initializes a game
@@ -61,7 +60,7 @@ public class GameController {
             won = true;
             return;
         }
-        comparison = new ArrayList<>();
+        List<String> comparison = new ArrayList<>();
         for (int i = 0; i < guess.getWord().length(); i++) {
             char guessLetter = guess.getWord().charAt(i);
             char targetLetter = target.charAt(i);
@@ -111,20 +110,8 @@ public class GameController {
         }
     }
 
-    public boolean getWon() {
-        return won;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
     public Game getGame() {
         return game;
-    }
-
-    public List<String> getComparison() {
-        return comparison;
     }
 
 }
