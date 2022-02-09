@@ -30,7 +30,7 @@ public class GameController {
 
     // REQUIRES: maxGuesses > 0
     // MODIFIES: this
-    // EFFECTS: determines whether game is won or not
+    // EFFECTS: processes user inputs for guesses and returns if game was one or not
     public boolean play() {
         int maxGuesses = gameView.selectMaxGuesses();
         gameView.printResultKey();
@@ -47,7 +47,7 @@ public class GameController {
     }
 
     // MODIFIES: game
-    // EFFECTS: compares guess word against the target word
+    // EFFECTS: compares user's guess word against the target word
     public void processWord(Guess guess) {
         if (!isValid(guess)) {
             gameView.notValidWord();
@@ -74,7 +74,7 @@ public class GameController {
         gameView.printGuess(guess, comparison);
     }
 
-    // EFFECTS: searches through WordList for guess; returns true if found, false if not found
+    // EFFECTS: searches through WordList for user guess; returns true if found, false if not found
     public boolean isValid(Guess guess) {
         try {
             Scanner scan = new Scanner(new File("./data/WordList.txt"));
