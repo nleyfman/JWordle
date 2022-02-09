@@ -1,8 +1,7 @@
-package controller;
+package ui;
 
 import model.Game;
 import model.Guess;
-import ui.GameView;
 
 import java.io.File;
 import java.io.FileNotFoundException;

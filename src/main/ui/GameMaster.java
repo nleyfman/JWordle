@@ -1,6 +1,5 @@
 package ui;
 
-import controller.GameController;
 import model.Statistics;
 
 import java.util.Scanner;
