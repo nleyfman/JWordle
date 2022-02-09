@@ -1,5 +1,7 @@
-package model;
+package controller;
 
+import controller.GameController;
+import model.Guess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

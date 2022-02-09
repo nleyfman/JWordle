@@ -1,6 +1,6 @@
 package ui;
 
-import model.GameController;
+import controller.GameController;
 import model.Statistics;
 
 import java.util.Scanner;
@@ -22,6 +22,7 @@ public class GameMaster {
             GameController gameController = new GameController();
             if (gameController.play()) {
                 stats.addWin();
+                stats.addWinStat(gameController.getGame().getNumGuesses());
             } else {
                 stats.addLoss();
             }
@@ -54,5 +55,8 @@ public class GameMaster {
         int losses = stats.getNumLosses();
         System.out.println("wins - " + wins);
         System.out.println("losses - " + losses);
+        if (stats.averageGuesses() != -1) {
+            System.out.println("Average number of guesses per win - " + stats.averageGuesses());
+        }
     }
 }

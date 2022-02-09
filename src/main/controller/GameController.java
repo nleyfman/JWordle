@@ -1,5 +1,7 @@
-package model;
+package controller;
 
+import model.Game;
+import model.Guess;
 import ui.GameView;
 
 import java.io.File;
@@ -32,6 +34,7 @@ public class GameController {
     // MODIFIES: this
     // EFFECTS: determines whether game is won or not
     public boolean play() {
+        System.out.println(target);
         int maxGuesses = gameView.selectMaxGuesses();
         gameView.printResultKey();
         while (game.getNumGuesses() < maxGuesses) {

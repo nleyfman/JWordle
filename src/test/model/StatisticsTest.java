@@ -30,4 +30,28 @@ public class StatisticsTest {
         testStats.addLoss();
         assertEquals(1, testStats.getNumLosses());
     }
+
+    @Test
+    void testAddWinStat() {
+        testStats.addWinStat(6);
+        testStats.addWinStat(3);
+        testStats.addWinStat(4);
+        assertEquals(3, testStats.getWinStats().size());
+        assertEquals(6, testStats.getWinStats().get(0));
+        assertEquals(3, testStats.getWinStats().get(1));
+        assertEquals(4, testStats.getWinStats().get(2));
+    }
+
+    @Test
+    void testAverageGuessesEmpty() {
+        assertEquals(-1, testStats.averageGuesses());
+    }
+
+    @Test
+    void testAverageGuessesNotEmpty() {
+        testStats.addWinStat(6);
+        testStats.addWinStat(3);
+        testStats.addWinStat(3);
+        assertEquals(4, testStats.averageGuesses());
+    }
 }
