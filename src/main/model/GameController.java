@@ -17,9 +17,10 @@ public class GameController {
     private boolean won;
     private List<String> comparison;
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: target is set to a random 5-letter word from the list;
+    //          initializes a game
+    //          initializes a gameview
+    //          sets won to false
     public GameController() {
         target = generateTarget();
         game = new Game();
@@ -27,9 +28,9 @@ public class GameController {
         won = false;
     }
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // REQUIRES: maxGuesses > 0
+    // MODIFIES: this
+    // EFFECTS: determines whether game is won or not
     public boolean play() {
         int maxGuesses = gameView.selectMaxGuesses();
         gameView.printResultKey();
@@ -45,9 +46,8 @@ public class GameController {
         return won;
     }
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // MODIFIES: game
+    // EFFECTS: compares guess word against the target word
     public void processWord(Guess guess) {
         if (!isValid(guess)) {
             gameView.notValidWord();
@@ -74,9 +74,7 @@ public class GameController {
         gameView.printGuess(guess, comparison);
     }
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: searches through WordList for guess; returns true if found, false if not found
     public boolean isValid(Guess guess) {
         try {
             Scanner scan = new Scanner(new File("./data/WordList.txt"));
@@ -93,9 +91,7 @@ public class GameController {
         return false;
     }
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: generates a random word from the WordList
     public String generateTarget() {
         List<String> words = new ArrayList<>();
         try {

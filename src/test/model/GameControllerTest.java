@@ -1,15 +1,7 @@
 package model;
 
-import java.io.FileNotFoundException;
-import java.io.File;
-
-import jdk.jfr.StackTrace;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.function.BooleanSupplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 

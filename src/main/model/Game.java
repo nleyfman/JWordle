@@ -7,11 +7,14 @@ import java.util.List;
 public class Game {
     private List<Guess> guesses;
 
+    // MODIFIES: this
+    // EFFECTS: guesses is set to a new empty ArrayList
     public Game() {
         guesses = new ArrayList<>();
     }
 
-    // add guess to list of guesses
+    // MODIFIES: this
+    // EFFECTS: adds a new guess to guesses
     public void addGuess(Guess guess) {
         guesses.add(guess);
     }

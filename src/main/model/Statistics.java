@@ -5,6 +5,8 @@ public class Statistics {
     private int numWins;
     private int numLosses;
 
+    // MODIFIES: this
+    // EFFECTS: initializes wins and losses to zero
     public Statistics() {
         numWins = 0;
         numLosses = 0;
@@ -18,10 +20,14 @@ public class Statistics {
         return numLosses;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds one win to numWins
     public void addWin() {
         numWins++;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds one loss to numLosses
     public void addLoss() {
         numLosses++;
     }
