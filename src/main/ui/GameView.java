@@ -27,6 +27,8 @@ public class GameView {
         System.out.println("You guessed the word!");
     }
 
+    // REQUIRES:
+    //
     public int selectMaxGuesses() {
         System.out.println("Enter the maximum number of guesses you wish to play with.");
         return input.nextInt();
@@ -37,7 +39,7 @@ public class GameView {
         return new Guess(input.next());
     }
 
-    public void key() {
+    public void printResultKey() {
         System.out.println("\nThe results of your guess will be indicated as follows:");
         System.out.println("\tc - the letter is in the correct place in the word");
         System.out.println("\ti - the letter is present in the word, but is in the wrong place");

@@ -5,7 +5,7 @@ import java.util.List;
 
 // Represents the game state
 public class Game {
-    private final List<Guess> guesses;
+    private List<Guess> guesses;
 
     public Game() {
         guesses = new ArrayList<>();

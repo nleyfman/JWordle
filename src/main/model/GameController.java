@@ -11,10 +11,11 @@ import java.util.Scanner;
 
 // Manipulates the game state in response to user input
 public class GameController {
-    private final String target;
-    private final Game game;
-    private final GameView gameView;
+    private String target;
+    private Game game;
+    private GameView gameView;
     private boolean won;
+    private List<String> comparison;
 
     // REQUIRES:
     // MODIFIES:
@@ -31,7 +32,7 @@ public class GameController {
     // EFFECTS:
     public boolean play() {
         int maxGuesses = gameView.selectMaxGuesses();
-        gameView.key();
+        gameView.printResultKey();
         while (game.getNumGuesses() < maxGuesses) {
             processWord(gameView.makeGuess());
             if (won) {
@@ -48,29 +49,29 @@ public class GameController {
     // MODIFIES:
     // EFFECTS:
     public void processWord(Guess guess) {
-        if (isValid(guess)) {
-            if (guess.getWord().equals(target)) {
-                gameView.gameWon();
-                won = true;
-            } else {
-                List<String> comparison = new ArrayList<>();
-                game.addGuess(guess);
-                for (int i = 0; i < guess.getWord().length(); i++) {
-                    char guessLetter = guess.getWord().charAt(i);
-                    char targetLetter = target.charAt(i);
-                    if (guessLetter == targetLetter) {
-                        comparison.add("c");
-                    } else if (target.indexOf(guessLetter) != -1) {
-                        comparison.add("i");
-                    } else {
-                        comparison.add("x");
-                    }
-                }
-                gameView.printGuess(guess, comparison);
-            }
-        } else {
+        if (!isValid(guess)) {
             gameView.notValidWord();
+            return;
         }
+        game.addGuess(guess);
+        if (guess.getWord().equals(target)) {
+            gameView.gameWon();
+            won = true;
+            return;
+        }
+        comparison = new ArrayList<>();
+        for (int i = 0; i < guess.getWord().length(); i++) {
+            char guessLetter = guess.getWord().charAt(i);
+            char targetLetter = target.charAt(i);
+            if (guessLetter == targetLetter) {
+                comparison.add("c");
+            } else if (target.indexOf(guessLetter) != -1) {
+                comparison.add("i");
+            } else {
+                comparison.add("x");
+            }
+        }
+        gameView.printGuess(guess, comparison);
     }
 
     // REQUIRES:
@@ -87,6 +88,7 @@ public class GameController {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return false;
         }
         return false;
     }
@@ -106,8 +108,25 @@ public class GameController {
             int index = rand.nextInt(words.size());
             return words.get(index);
         } catch (FileNotFoundException e) {
-            return "Error: File not found";
+            e.printStackTrace();
+            return "";
         }
+    }
+
+    public boolean getWon() {
+        return won;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public List<String> getComparison() {
+        return comparison;
     }
 
 }
