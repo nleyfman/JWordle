@@ -12,3 +12,5 @@ I was interested in making this project because I was curious how such a simple 
 - As a user, I want to be able to select to play again
 - As a user, I want to be able to change the number of guesses I am allowed
 - As a user, I want to view my statistics for all of my games played in the current session
+- As a user, I want to be able to save my game to file
+- As a user, I want to be able to load my game from file
