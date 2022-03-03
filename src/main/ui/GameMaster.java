@@ -29,9 +29,10 @@ public class GameMaster {
 
     // MODIFIES: this
     // EFFECTS: starts new games as long as user wishes to continue; prints out stats at the end
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void run(GameController gc, Statistics stats) {
         boolean continuePlaying = true;
-        if (stats == null && gc == null) {
+        if (stats == null || gc == null) {
             stats = new Statistics(0, 0, new ArrayList<>());
             gc = new GameController("", null, 0);
         }
