@@ -63,6 +63,7 @@ public class Statistics implements Writable {
         return winStats;
     }
 
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("numWins", numWins);

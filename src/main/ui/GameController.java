@@ -21,10 +21,12 @@ public class GameController implements Writable {
     private int maxGuesses;
     private boolean quit;
 
-    // EFFECTS: target is set to a random 5-letter word from the list;
+    // EFFECTS: target is set to a random 5-letter word from the list if not given;
     //          initializes a game
     //          initializes a gameview
     //          sets won to false
+    //          initializes max guesses
+    //          sets quit to false
     public GameController(String target, Game game, int maxGuesses) {
         if (target.equals("")) {
             this.target = generateTarget();
@@ -44,7 +46,7 @@ public class GameController implements Writable {
 
     // REQUIRES: maxGuesses > 0
     // MODIFIES: this
-    // EFFECTS: processes user inputs for guesses and returns if game was one or not
+    // EFFECTS: processes user inputs for guesses and returns if game was won or not
     public GameResult play() {
         if (maxGuesses == 0) {
             maxGuesses = gameView.selectMaxGuesses();
@@ -65,7 +67,7 @@ public class GameController implements Writable {
 
     // MODIFIES: game
     // EFFECTS: checks whether word is a quit request, whether it is a valid word and adds it to
-    // the game if it is, and checks whether the game has been won
+    // the game if it is, compares guess and target, and checks whether the game has been won
     public void processWord(Guess guess) {
         if (guess.getWord().equals("q")) {
             quit = true;
@@ -81,22 +83,7 @@ public class GameController implements Writable {
             won = true;
             return;
         }
-        compare(guess);
-    }
-
-    public void compare(Guess guess) {
-        List<String> comparison = new ArrayList<>();
-        for (int i = 0; i < guess.getWord().length(); i++) {
-            char guessLetter = guess.getWord().charAt(i);
-            char targetLetter = target.charAt(i);
-            if (guessLetter == targetLetter) {
-                comparison.add("c");
-            } else if (target.indexOf(guessLetter) != -1) {
-                comparison.add("i");
-            } else {
-                comparison.add("x");
-            }
-        }
+        List<String> comparison = guess.compare(target);
         gameView.printGuess(guess, comparison);
     }
 

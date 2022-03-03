@@ -1,6 +1,5 @@
 package ui;
 
-import model.Game;
 import model.Statistics;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -60,8 +59,6 @@ public class GameMaster {
         }
     }
 
-
-
     // REQUIRES: scanner input is non-empty string
     // EFFECTS: returns true if yes, false otherwise
     private boolean askToPlayAgain() {
@@ -70,6 +67,8 @@ public class GameMaster {
         return scan.next().equals("y");
     }
 
+    // REQUIRES: scanned input is non-empty string
+    // EFFECTS: returns true if yes, false otherwise
     private boolean askToSave() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Would you like to save your game? [y/n]");
@@ -95,6 +94,8 @@ public class GameMaster {
         }
     }
 
+    // REQUIRES: scanned input is non-empty string
+    // EFFECTS: prints welcome message and returns true if input is yes, false otherwise
     private boolean startUp() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Welcome to JWordle! Please enter [y] to load the last saved game, "
@@ -102,6 +103,7 @@ public class GameMaster {
         return scan.next().equals("y");
     }
 
+    // EFFECTS: saves game state to file
     // Code reference: JsonSerializationDemo
     private void saveGameState(GameController gc, Statistics stats) {
         try {
@@ -113,6 +115,8 @@ public class GameMaster {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads game state from file
     // Code reference: JsonSerializationDemo
     private void loadGameState() {
         try {
