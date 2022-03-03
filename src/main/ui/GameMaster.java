@@ -104,8 +104,8 @@ public class GameMaster {
         return scan.next().equals("y");
     }
 
+    // Code reference: JsonSerializationDemo from Phase 2 example file
     // EFFECTS: saves game state to file
-    // Code reference: JsonSerializationDemo
     private void saveGameState(GameController gc, Statistics stats) {
         try {
             jsonWriter.open();
@@ -116,9 +116,9 @@ public class GameMaster {
         }
     }
 
+    // Code reference: JsonSerializationDemo from Phase 2 example file
     // MODIFIES: this
     // EFFECTS: loads game state from file
-    // Code reference: JsonSerializationDemo
     private void loadGameState() {
         try {
             GameController gc = jsonReader.readGameController();

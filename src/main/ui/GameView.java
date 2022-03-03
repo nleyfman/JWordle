@@ -15,7 +15,7 @@ public class GameView {
         input.useDelimiter("\n");
     }
 
-    // EFFECTS: prints out guess and conparison with target
+    // EFFECTS: prints out guess and comparison with target
     public void printGuess(Guess guess, List<String> comparison) {
         System.out.println(guess.getWord());
         System.out.println(String.join("", comparison));

@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-// Code reference: JsonSerializationDemo
+// Code reference: JsonSerializationDemo from Phase 2 example file
 // Represents a writer that writes JSON representation of game state to file
 public class JsonWriter {
     private static final int TAB = 4;
