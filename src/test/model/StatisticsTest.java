@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StatisticsTest {
@@ -10,7 +12,7 @@ public class StatisticsTest {
 
     @BeforeEach
     void runBefore() {
-        testStats = new Statistics();
+        testStats = new Statistics(0, 0, new ArrayList<>());
     }
 
     @Test

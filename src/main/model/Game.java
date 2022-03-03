@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents the game state
-public class Game {
+public class Game implements Writable {
     private List<Guess> guesses;
 
     // MODIFIES: this
@@ -23,4 +27,19 @@ public class Game {
         return guesses.size();
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("guesses", guessesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns guesses in this game as a JSON array
+    public JSONArray guessesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Guess g : guesses) {
+            jsonArray.put(g.toJson());
+        }
+        return jsonArray;
+    }
 }

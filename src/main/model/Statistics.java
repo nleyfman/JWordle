@@ -1,20 +1,24 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents the number of wins and losses over the entire run of the program
-public class Statistics {
+public class Statistics implements Writable {
     private int numWins;
     private int numLosses;
     private List<Integer> winStats;
 
     // MODIFIES: this
     // EFFECTS: initializes wins and losses to zero
-    public Statistics() {
-        numWins = 0;
-        numLosses = 0;
-        winStats = new ArrayList<>();
+    public Statistics(int wins, int losses, ArrayList<Integer> stats) {
+        numWins = wins;
+        numLosses = losses;
+        winStats = stats;
     }
 
     // MODIFIES: this
@@ -58,4 +62,23 @@ public class Statistics {
     public List<Integer> getWinStats() {
         return winStats;
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("numWins", numWins);
+        json.put("numLosses", numLosses);
+        json.put("winStats", winStatsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns list of attempts until each win as a JSON array
+    public JSONArray winStatsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (int i : winStats) {
+            jsonArray.put(i);
+        }
+        return jsonArray;
+    }
+
+
 }

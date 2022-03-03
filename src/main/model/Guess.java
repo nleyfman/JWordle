@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents one guess
-public class Guess {
+public class Guess implements Writable {
     private final String word;
 
     // REQUIRES: word is a 5-letter word
@@ -13,5 +16,11 @@ public class Guess {
 
     public String getWord() {
         return word;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("guess", word);
+        return json;
     }
 }
