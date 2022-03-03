@@ -39,6 +39,7 @@ public class Guess implements Writable {
         return comparison;
     }
 
+    // EFFECTS: returns guess as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

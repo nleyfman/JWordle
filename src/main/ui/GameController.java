@@ -131,6 +131,7 @@ public class GameController implements Writable {
         WON, LOST, SAVE;
     }
 
+    // EFFECTS: returns GameController as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

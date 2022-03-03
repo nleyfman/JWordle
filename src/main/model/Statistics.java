@@ -63,6 +63,7 @@ public class Statistics implements Writable {
         return winStats;
     }
 
+    // EFFECTS: returns statistics as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

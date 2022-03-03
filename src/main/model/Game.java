@@ -27,6 +27,7 @@ public class Game implements Writable {
         return guesses.size();
     }
 
+    // EFFECTS: returns game as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
