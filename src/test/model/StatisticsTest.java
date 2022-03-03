@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -55,5 +57,48 @@ public class StatisticsTest {
         testStats.addWinStat(3);
         testStats.addWinStat(3);
         assertEquals(4, testStats.averageGuesses());
+    }
+
+    @Test
+    void testToJsonKeys() {
+        testStats.addWin();
+        testStats.addWin();
+        testStats.addWin();
+        testStats.addWinStat(4);
+        testStats.addWinStat(2);
+        testStats.addWinStat(3);
+        testStats.addLoss();
+        JSONObject statsJson = testStats.toJson();
+        Iterable<String> keys = statsJson.keySet();
+        boolean containsWins = false;
+        boolean containsLosses = false;
+        boolean containsWinStats = false;
+        for (final String key : keys) {
+            switch (key) {
+                case "numWins":
+                    containsWins = true;
+                    break;
+                case "numLosses":
+                    containsLosses = true;
+                    break;
+                case "winStats":
+                    containsWinStats = true;
+                    break;
+            }
+        }
+        assertTrue(containsWins && containsLosses && containsWinStats);
+    }
+
+    @Test
+    void testToJsonValues() {
+        testStats.addWin();
+        testStats.addWinStat(4);
+        testStats.addLoss();
+        testStats.addLoss();
+        JSONObject statsJson = testStats.toJson();
+        assertEquals(1, statsJson.getInt("numWins"));
+        assertEquals(2, statsJson.getInt("numLosses"));
+        JSONArray jsonArray = statsJson.getJSONArray("winStats");
+        assertEquals(4, jsonArray.get(0));
     }
 }
