@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Code reference: JsonSerializationDemo from Phase 2 example file
 public class JsonWriterTest {
 
     @Test
