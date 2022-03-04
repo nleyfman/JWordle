@@ -43,4 +43,8 @@ public class Game implements Writable {
         }
         return jsonArray;
     }
+
+    public List<Guess> getGuesses() {
+        return guesses;
+    }
 }

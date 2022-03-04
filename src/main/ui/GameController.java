@@ -128,7 +128,15 @@ public class GameController implements Writable {
 
     // Represents result of a play
     public enum GameResult {
-        WON, LOST, SAVE;
+        WON, LOST, SAVE
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public int getMaxGuesses() {
+        return maxGuesses;
     }
 
     // EFFECTS: returns GameController as a JSON object

@@ -1,0 +1,12 @@
+{
+    "gameController": {
+        "game": {"guesses": []},
+        "maxGuesses": 0,
+        "target": "adage"
+    },
+    "stats": {
+        "numWins": 0,
+        "winStats": [],
+        "numLosses": 0
+    }
+}

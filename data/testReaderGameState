@@ -1,0 +1,15 @@
+{
+    "gameController": {
+        "game": {"guesses": [
+            {"guess": "claim"},
+            {"guess": "blame"}
+        ]},
+        "maxGuesses": 5,
+        "target": "bench"
+    },
+    "stats": {
+        "numWins": 1,
+        "winStats": [2],
+        "numLosses": 1
+    }
+}
