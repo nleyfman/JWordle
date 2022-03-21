@@ -69,11 +69,11 @@ public class GameMasterUI extends JFrame {
                 stats.addLoss();
             }
             if (askToSave()) {
-                saveGameState(new GameControllerUI("", null, 0), stats);
+                saveGameState(new GameControllerUI("", new Game(), 0), stats);
             }
             continuePlaying = askToPlayAgain();
             if (continuePlaying) {
-                gc = new GameControllerUI("", null, 0);
+                gc = new GameControllerUI("", new Game(), 0);
             }
         }
         if (askForStats()) {
