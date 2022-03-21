@@ -5,6 +5,7 @@ import model.Guess;
 import model.Statistics;
 import org.junit.jupiter.api.Test;
 import ui.GameController;
+import ui.GameControllerPrev;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class JsonWriterTest {
     void testWriterInvalidFile() {
         try {
             Game game = new Game();
-            GameController gc = new GameController("claim", game, 5);
+            GameControllerPrev gc = new GameControllerPrev("claim", game, 5);
             Statistics stats = new Statistics(0, 0, new ArrayList<>());
             JsonWriter writer = new JsonWriter("./data/my\0/illegal:fileName.json");
             writer.open();

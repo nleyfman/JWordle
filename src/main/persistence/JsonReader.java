@@ -6,6 +6,7 @@ import model.Statistics;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ui.GameController;
+import ui.GameControllerPrev;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

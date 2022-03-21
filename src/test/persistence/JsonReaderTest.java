@@ -5,6 +5,7 @@ import model.Guess;
 import model.Statistics;
 import org.junit.jupiter.api.Test;
 import ui.GameController;
+import ui.GameControllerPrev;
 
 import java.io.IOException;
 import java.util.List;

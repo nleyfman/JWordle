@@ -3,6 +3,7 @@ package persistence;
 import model.Statistics;
 import org.json.JSONObject;
 import ui.GameController;
+import ui.GameControllerPrev;
 
 import java.io.File;
 import java.io.FileNotFoundException;

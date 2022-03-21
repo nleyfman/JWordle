@@ -16,49 +16,48 @@ public class GameMaster {
     private JsonReader jsonReader;
 
     // EFFECTS: runs the GameMaster
-    public GameMaster() {
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
-        boolean prevLoad = startUp();
-        if (prevLoad) {
-            loadGameState();
-        } else {
-            run(null, null);
-        }
-    }
+//    public GameMaster() {
+//        jsonWriter = new JsonWriter(JSON_STORE);
+//        jsonReader = new JsonReader(JSON_STORE);
+//        boolean prevLoad = startUp();
+//        if (prevLoad) {
+//            loadGameState();
+//        } else {
+//            run(null, null);
+//        }
+//    }
 
     // MODIFIES: this
     // EFFECTS: starts new games as long as user wishes to continue; prints out stats at the end
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    public void run(GameController gc, Statistics stats) {
-        boolean continuePlaying = true;
-        if (stats == null || gc == null) {
-            stats = new Statistics(0, 0, new ArrayList<>());
-            gc = new GameController("", null, 0);
-        }
-        while (continuePlaying) {
-            GameController.GameResult result = gc.play();
-            if (result == GameController.GameResult.SAVE) {
-                saveGameState(gc, stats);
-                return;
-            } else if (result == GameController.GameResult.WON) {
-                stats.addWin();
-                stats.addWinStat(gc.getGame().getNumGuesses());
-            } else {
-                stats.addLoss();
-            }
-            if (askToSave()) {
-                saveGameState(new GameController("", null, 0), stats);
-            }
-            continuePlaying = askToPlayAgain();
-            if (continuePlaying) {
-                gc = new GameController("", null, 0);
-            }
-        }
-        if (askForStats()) {
-            printStats(stats);
-        }
-    }
+//    public void run(GameController gc, Statistics stats) {
+//        boolean continuePlaying = true;
+//        if (stats == null || gc == null) {
+//            stats = new Statistics(0, 0, new ArrayList<>());
+//            gc = new GameController("", null, 0);
+//        }
+//        while (continuePlaying) {
+//            if (gc.play()) {
+//                saveGameState(gc, stats);
+//                return;
+//            } else if (result == GameControllerPrev.GameResult.WON) {
+//                stats.addWin();
+//                stats.addWinStat(gc.getGame().getNumGuesses());
+//            } else {
+//                stats.addLoss();
+//            }
+//            if (askToSave()) {
+//                saveGameState(new GameControllerPrev("", null, 0), stats);
+//            }
+//            continuePlaying = askToPlayAgain();
+//            if (continuePlaying) {
+//                gc = new GameControllerPrev("", null, 0);
+//            }
+//        }
+//        if (askForStats()) {
+//            printStats(stats);
+//        }
+//    }
 
     // REQUIRES: scanner input is non-empty string
     // EFFECTS: returns true if yes, false otherwise
@@ -119,15 +118,15 @@ public class GameMaster {
     // Code reference: JsonSerializationDemo from Phase 2 example file
     // MODIFIES: this
     // EFFECTS: loads game state from file
-    private void loadGameState() {
-        try {
-            GameController gc = jsonReader.readGameController();
-            Statistics stats = jsonReader.readStats();
-            run(gc, stats);
-        } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
-        }
-    }
+//    private void loadGameState() {
+//        try {
+//            GameController gc = jsonReader.readGameController();
+//            Statistics stats = jsonReader.readStats();
+//            run(gc, stats);
+//        } catch (IOException e) {
+//            System.out.println("Unable to read from file: " + JSON_STORE);
+//        }
+//    }
 
 }
 
