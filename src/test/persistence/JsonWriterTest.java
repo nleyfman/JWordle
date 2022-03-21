@@ -4,8 +4,7 @@ import model.Game;
 import model.Guess;
 import model.Statistics;
 import org.junit.jupiter.api.Test;
-import ui.GameController;
-import ui.GameControllerPrev;
+import ui.GameControllerUI;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class JsonWriterTest {
     void testWriterInvalidFile() {
         try {
             Game game = new Game();
-            GameControllerPrev gc = new GameControllerPrev("claim", game, 5);
+            GameControllerUI gc = new GameControllerUI("claim", game, 5);
             Statistics stats = new Statistics(0, 0, new ArrayList<>());
             JsonWriter writer = new JsonWriter("./data/my\0/illegal:fileName.json");
             writer.open();
@@ -35,7 +34,7 @@ public class JsonWriterTest {
         try {
             Game game = new Game();
             game.addGuess(new Guess("claim"));
-            GameController gc = new GameController("brain", game, 5);
+            GameControllerUI gc = new GameControllerUI("brain", game, 5);
             Statistics stats = new Statistics(0, 0, new ArrayList<>());
             stats.addLoss();
             stats.addWin();
@@ -61,7 +60,7 @@ public class JsonWriterTest {
         try {
             Game game = new Game();
             game.addGuess(new Guess("claim"));
-            GameController gc = new GameController("brain", game, 5);
+            GameControllerUI gc = new GameControllerUI("brain", game, 5);
             Statistics stats = new Statistics(0, 0, new ArrayList<>());
             stats.addLoss();
             stats.addWin();

@@ -2,8 +2,7 @@ package persistence;
 
 import model.Statistics;
 import org.json.JSONObject;
-import ui.GameController;
-import ui.GameControllerPrev;
+import ui.GameControllerUI;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,7 +29,7 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of game state to file
-    public void write(GameController gc, Statistics stats) {
+    public void write(GameControllerUI gc, Statistics stats) {
         JSONObject json = new JSONObject();
         json.put("gameController", gc.toJson());
         json.put("stats", stats.toJson());

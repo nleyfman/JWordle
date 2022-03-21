@@ -5,8 +5,7 @@ import model.Guess;
 import model.Statistics;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import ui.GameController;
-import ui.GameControllerPrev;
+import ui.GameControllerUI;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -27,7 +26,7 @@ public class JsonReader {
 
     // EFFECTS: reads GameController from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public GameController readGameController() throws IOException {
+    public GameControllerUI readGameController() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         JSONObject gameControllerObject = jsonObject.getJSONObject("gameController");
@@ -35,7 +34,7 @@ public class JsonReader {
     }
 
     // EFFECTS: parses GameController from JSON object and returns it
-    private GameController parseGameController(JSONObject jsonObject) {
+    private GameControllerUI parseGameController(JSONObject jsonObject) {
         String target = jsonObject.getString("target");
         int maxGuesses = jsonObject.getInt("maxGuesses");
         Game game = new Game();
@@ -46,7 +45,7 @@ public class JsonReader {
             Guess guess = new Guess(nextGuess.getString("guess"));
             game.addGuess(guess);
         }
-        return new GameController(target, game, maxGuesses);
+        return new GameControllerUI(target, game, maxGuesses);
     }
 
     // EFFECTS: reads Statistics from file and returns it;

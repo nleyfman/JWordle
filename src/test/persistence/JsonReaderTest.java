@@ -4,8 +4,7 @@ import model.Game;
 import model.Guess;
 import model.Statistics;
 import org.junit.jupiter.api.Test;
-import ui.GameController;
-import ui.GameControllerPrev;
+import ui.GameControllerUI;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,7 +18,7 @@ public class JsonReaderTest {
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            GameController gc = reader.readGameController();
+            GameControllerUI gc = reader.readGameController();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -30,7 +29,7 @@ public class JsonReaderTest {
     void testReaderNewGameController() {
         JsonReader reader = new JsonReader("./data/testReaderNewGameState");
         try {
-            GameController gc = reader.readGameController();
+            GameControllerUI gc = reader.readGameController();
             assertEquals(0, gc.getMaxGuesses());
             assertEquals("adage", gc.getTarget());
             Game game = gc.getGame();
@@ -44,7 +43,7 @@ public class JsonReaderTest {
     void testReaderGameController() {
         JsonReader reader = new JsonReader("./data/testReaderGameState");
         try {
-            GameController gc = reader.readGameController();
+            GameControllerUI gc = reader.readGameController();
             Game game = gc.getGame();
             assertEquals(2, game.getNumGuesses());
             List<Guess> guesses = game.getGuesses();
