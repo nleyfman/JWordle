@@ -21,6 +21,7 @@ public class Game implements Writable {
     // EFFECTS: adds a new guess to guesses
     public void addGuess(Guess guess) {
         guesses.add(guess);
+        EventLog.getInstance().logEvent(new Event("Guess added."));
     }
 
     public int getNumGuesses() {

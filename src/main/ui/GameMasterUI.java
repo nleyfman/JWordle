@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Game;
 import model.Statistics;
 import persistence.JsonReader;
@@ -78,6 +80,13 @@ public class GameMasterUI extends JFrame {
         }
         if (askForStats()) {
             printStats(stats);
+        }
+        printLog(EventLog.getInstance());
+    }
+
+    private void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString());
         }
     }
 

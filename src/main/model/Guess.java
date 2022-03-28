@@ -24,6 +24,7 @@ public class Guess implements Writable {
     // REQUIRES: target and words are the same length
     // EFFECTS: compares this to a given string and produces a string array of letter comparisons
     public List<String> compare(String target) {
+        EventLog.getInstance().logEvent(new Event("Viewed comparison with target word."));
         List<String> comparison = new ArrayList<>();
         for (int i = 0; i < word.length(); i++) {
             char guessLetter = word.charAt(i);

@@ -28,6 +28,13 @@ class GameTest {
     }
 
     @Test
+    void testGetGuesses() {
+        Guess guess = new Guess("tails");
+        testGame.addGuess(guess);
+        assertEquals(guess, testGame.getGuesses().get(0));
+    }
+
+    @Test
     void testToJsonKey() {
         Guess guess = new Guess("tails");
         testGame.addGuess(guess);
