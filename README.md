@@ -42,3 +42,6 @@ Sun Mar 27 15:48:07 PDT 2022 \
 Viewed comparison with target word. \
 Sun Mar 27 15:48:11 PDT 2022 \
 Guess added.
+
+### Phase 4: Task 3
+Looking back at my UML diagram, I can see that the model itself seems to be well-structured, but there is a lot of coupling especially with the UI classes, GameControllerUI and GameMasterUI. The model is extremely simple and there is a lot of functionality that is specific to the ui package, so if I were to refactor the program I would try to put more of the functionality into the model and keep the UI simple and focused solely on user interaction and graphics. This is especially true with GameControllerUI—the ui class has to keep track of the game but also holds the target word, which is why it needs to be saved as a Json object. I would probably refactor this into multiple classes, putting one in the model package with the target word and actual game, and have the UI only be concerned with displaying information. I have the same problem with the GameMaster UI. I could probably implement the Observer pattern, since the GameController needs to be alerted every time a guess is added, and the GameMaster needs to be alerted every time a game begins or ends. The Game and Statistics classes would then be observables.
